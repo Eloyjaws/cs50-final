@@ -31,9 +31,12 @@
 						</a>
 					</li>
 					{{else}}
-						<li class="list-group-item">
+						<li class="list-group-item sorry">
 					    <span class="badge">0</span>
 					    <h2 class="text-center">Sorry, there are Currently no Memes available</h2>
+					    {{#if currentUser}}
+					    	<h5 class="text-center">You can Add one <a href="/add">Here!</a></h5>
+					    {{/if}}
 						</li>
 					{{/each}}
 				</ul>
@@ -50,7 +53,7 @@
 	//$('body').removeClass('modal-open');
 	//$('.modal-backdrop').remove();
 </script>	
-<form role="form">
+<!--<form role="form">
 	    <div class="form-group">
 	        <input id="searchinput" class="form-control" type="search" placeholder="Search..." />
 	    </div>
@@ -63,7 +66,7 @@
 	        ...
 	    </div>
 	</form>
-
+-->
 </template>
 
 <template name="create_meme">

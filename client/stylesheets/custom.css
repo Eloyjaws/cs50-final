@@ -6875,7 +6875,7 @@ button.close {
 
 @media(max-width:1200px) {
   #myCanvas {
-      width: 100%;
+      max-width: 100%;
       height: auto;
   }
 }
@@ -6892,6 +6892,10 @@ button.close {
       color: #000000;
       padding-top: 30px;
     }
+    .sorry{
+      width:700px;
+      /*margin: 10px auto;*/
+    }
 }
 
 /* ----------- Retina Screens ----------- */
@@ -6907,6 +6911,11 @@ button.close {
       line-height: 1.1;
       color: #000000;
       padding-top: 30px;
+    }
+    
+    .sorry{
+      width:700px;
+      margin: 10px auto;
     }
 }
 
