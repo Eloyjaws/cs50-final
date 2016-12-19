@@ -1,0 +1,124 @@
+<template name="choose">
+	
+	
+	<form role="form">
+    <div class="form-group">
+        <input id="searchinput" class="form-control" type="search" placeholder="Search..." />
+    </div>
+    <div id="searchlist" class="list-group">
+        <div class="container">
+		<div class="row center-block">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<ul class="list-group" data-role="listview" data-filter="true" data-input="#myFilter" data-autodividers="true" data-inset="true">
+					{{#each Raw_Meme}}
+					<li class="list-group-item">
+						<a href="/create_meme/{{_id}}" class="create-meme">
+							<div class="row">
+								<div class="col-lg-2 col-md-2 col-sm-5 col-xs-5">
+									<img src="{{image_url}}" width="100%" height="" class="img-thumbnail">
+								</div>
+								<div class="col-lg-9 col-md-9 col-sm-5 col-xs-5">
+									<!--<h4 class="text-center">{{name}}</h4>-->
+									<p class="memename"><span>{{name}}</span></p>
+								</div>
+								<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2">
+									<!--<span class="pull-right fav btn btn-success">Fav</span>-->
+									{{#if currentUser}}
+										<span class="pull-right"><a href="/edit/{{_id}}">Edit</a></span>
+									{{/if}}
+								</div>
+							</div>
+						</a>
+					</li>
+					{{else}}
+						<li class="list-group-item">
+					    <span class="badge">0</span>
+					    <h2 class="text-center">Sorry, there are Currently no Memes available</h2>
+						</li>
+					{{/each}}
+				</ul>
+			</div>
+		</div>
+	</div>
+    </div>
+</form>
+<script>
+    $('#searchlist').btsListFilter('#searchinput', {itemChild: 'span'});
+</script>
+<script type="text/javascript">
+	//$('#memeModal').modal('hide');
+	//$('body').removeClass('modal-open');
+	//$('.modal-backdrop').remove();
+</script>	
+<form role="form">
+	    <div class="form-group">
+	        <input id="searchinput" class="form-control" type="search" placeholder="Search..." />
+	    </div>
+	    <div id="searchlist" class="list-group">
+	        <a class="list-group-item" href="blue.html">ss<span>blue</span></a>
+	        <a class="list-group-item" href="blue.html"><span>rouge</span></a>
+	        <a class="list-group-item" href="blue.html"><span>onyx</span></a>
+	        <a class="list-group-item" href="blue.html"><span>green</span></a>
+	        <a class="list-group-item" href="blue.html"><span>magenta</span></a>
+	        ...
+	    </div>
+	</form>
+
+</template>
+
+<template name="create_meme">
+
+	<div class="center-content">
+		<h3 class="">Create Meme</h3>
+
+		<img src="{{image_url}}" class="meme" id="meme" width="100%">
+	    
+	    <form class="add-meme-details" enctype="multipart/form-data">
+			<div class="form-group">
+				<label>Name</label>
+				<input type="text" name="name" class="form-control" placeholder="{{name}}">
+			</div>
+
+			<div class="form-group">
+				<label>Text on top</label>
+				<input type="text" name="top_text" class="form-control" placeholder="">
+			</div>
+
+			<div class="form-group">
+				<label>Text at bottom</label>
+				<input type="text" name="bottom_text" class="form-control" placeholder="">
+			</div>
+
+			<input type="hidden" name="image_url" value="{{image_url}}">
+
+			<div>
+				<input type="submit" name="submit" class="btn btn-success" value="Create" data-toggle="modal" data-target="#memeModal">
+				<a href="/choose" class="btn btn-default">Close</a>
+			</div>
+		</form>
+	</div>
+
+</template>
+
+
+<template name="list">
+	<ol>
+		{{#each Raw_Meme}}
+		    <li class="media"> 
+		      <a id="beitragsliste_news_list_1" 
+		         class=""> 
+		        	<div class="teaserImgWrapper">
+			          <img id="beitragsliste_news_img_1" 
+		               alt="bla"
+		               class="Absolute-Center is-Image" 
+		               src="{{image_url}}"
+		            />
+			        </div>
+		        </a>
+		        <div class="bd"> <span class="data">News vom 13.02.14 17:07 Uhr</span>
+		             <h4><a href="http://m.chip.de/news/Softwarefehler-Toyota-ruft-1-9-Mio.-Prius-zurueck_67363576.html">Softwarefehler: Toyota ruft 1,9 Mio. Prius zurück</a></h4>
+		        </div>
+		    </li>
+		{{/each}}
+    </ol>
+</template>

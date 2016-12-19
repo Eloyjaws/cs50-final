@@ -1,0 +1,14 @@
+<template name="home">
+	
+	<div class="jumbotron">
+		{{#if currentUser}}
+			<h1>Welcome back! {{userEmail}}</h1>
+		{{else}}
+	  		<h1>Welcome to SadeVillain.</h1>
+	  	{{/if}}
+	  <p>This is a layout i'm intending to use to build the naija meme generator app.</p>
+	  <p><a class="btn btn-primary btn-lg" href="/choose">Create a Meme</a></p>
+	</div>
+
+	
+</template>

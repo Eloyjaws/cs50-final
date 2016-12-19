@@ -1,0 +1,36 @@
+<template name="edit_meme">
+	
+	<div class="center-content">
+		<h3>Edit Meme</h3>
+		<img src="{{image_url}}" width="100%" height="" class="img-thumbnail">
+
+		<form class="edit-meme" enctype="multipart/form-data">
+			<div class="form-group">
+				<label>Name</label>
+				<input type="text" name="name" class="form-control" placeholder="{{name}}">
+			</div>
+			<div class="form-group">
+				<label>Category</label>
+				<select class="form-control" name="category">
+					<option value="{{category}}">{{category}}</option>
+					{{#each categories}}
+						<option value="{{slug}}">{{name}}</option>
+					{{/each}}
+				</select>
+			</div>
+			<div class="form-group">
+				<label>Description</label>
+				<textarea name="description" class="form-control" placeholder="{{description}}"></textarea>
+			</div>
+			<div class="form-group">
+				<label>Featured</label>
+				<input type="radio" name="is_featured" value="1" {{checkvalue 1 is_featured}}>Yes
+				<input type="radio" name="is_featured" value="0" {{checkvalue 0 is_featured}}>No
+			</div>
+			<div>
+				<input type="submit" name="submit" class="btn btn-success" value="Save Changes">
+				<a href="/choose" class="btn btn-default">Close</a>
+			</div>
+		</form>
+	</div>
+</template>

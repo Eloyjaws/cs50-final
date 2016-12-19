@@ -1,0 +1,45 @@
+<template name="add_meme">
+	<script type="text/javascript">
+		var widget = uploadcare.Widget('[role=uploadcare-uploader]');
+		widget.onUploadComplete(function(fileInfo) {
+		  console.log('fileInfo', fileInfo);
+		  console.log('file UUID', fileInfo.uuid);
+		  console.log('fileInfo.originalUrl', fileInfo.originalUrl); // Public CDN URL of the uploaded file, without any operations.
+		  $('#picture').val(fileInfo.originalUrl);
+		});
+	</script>
+	<h3>Add Meme</h3>
+	<form class="add-meme" enctype="multipart/form-data">
+		<div class="form-group">
+			<label>Name</label>
+			<input type="text" name="name" class="form-control" placeholder="Meme Name">
+		</div>
+		<div class="form-group">
+			<label>Category</label>
+			<select class="form-control" name="category">
+				<option value="0">--Select Category--</option>
+				{{#each categories}}
+					<option value="{{slug}}">{{name}}</option>
+				{{/each}}
+			</select>
+		</div>
+		<div class="form-group">
+			<label>Meme Image</label>
+			<input type="hidden" name="picture" role="uploadcare-uploader" value ="" id="picture" data-crop />
+			<!--<input type="file" name="meme" id="meme" class="">-->
+		</div>
+		<div class="form-group">
+			<label>Description</label>
+			<textarea name="description" class="form-control"></textarea>
+		</div>
+		<div class="form-group">
+			<label>Featured</label>
+			<input type="radio" name="is_featured" value="1">Yes
+			<input type="radio" name="is_featured" value="0" checked>No
+		</div>
+		<div>
+			<input type="submit" name="submit" class="btn btn-success" value="Add Meme">
+			<a href="/" class="btn btn-default">Close</a>
+		</div>
+	</form>
+</template>

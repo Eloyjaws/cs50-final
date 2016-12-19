@@ -1,0 +1,107 @@
+<template name="savememe">
+	<!--<div class="modal" id="memeModal" tabindex="-1" role="dialog" aria-labelledby="memeModalLabel">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close close-modal center-content-3" data-dismiss="modal" aria-hidden="true">&times;</button>
+	      	<h3 class="modal-title">Your Meme</h3>
+	      </div>
+	      <div class="modal-body">
+	      	<canvas id="myCanvas" width="{{img_width}}" height="{{img_height}}" style="border:1px solid #000000;" class="center-content-2">
+	      	
+			</canvas>
+	        <img src="{{image_url}}" id="imageId" hidden="hidden">
+	        <h4>{{top_text}} {{bottom_text}}</h4>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default close-modal" data-dismiss="modal">Close</button>
+	        <a class="btn btn-primary" href="{{image_url}}">Save Meme</a>
+	      </div>
+	    </div>
+	  </div>
+	</div>-->
+	<div class="center-content-3 container">
+		<div class="row">
+			<canvas id="myCanvas" width="{{img_width}}" height="{{img_height}}" style="border:1px solid #000000;" class="">
+			      	
+			</canvas>
+			<img src="{{image_url}}" id="imageId" hidden="hidden" crossOrigin="Anonymous">
+		</div>
+		<a id="download" class="btn btn-success pull-right dl-button">Download Image</a>
+	</div>
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+	   		$('#memeModal').modal('show');
+		});
+
+		    var canvas = document.getElementById("myCanvas");
+
+		    var img = new Image();
+			
+			img.crossOrigin = "Anonymous";
+			
+			var image = document.getElementById("imageId");
+
+			img.onload = function() {
+			  canvas.width = this.width;
+			  canvas.height = this.height;
+			   var ctx = canvas.getContext('2d');
+			   ctx.drawImage(this, 0, 0);
+
+			    // Set the text style to that to which we are accustomed
+				ctx.lineWidth  = 5;
+				ctx.font = '30pt sans-serif';
+				ctx.strokeStyle = "black";
+				ctx.fillStyle = "white";
+				ctx.textAlign = "center";
+				ctx.lineJoin = 'round';
+
+				var center = {{img_width}}/2;
+				//ctx.font = "40px Verdana";
+				ctx.strokeText("{{top_text}}",center,50);
+				ctx.strokeText("{{bottom_text}}",center,({{img_height}} - 20));
+				ctx.fillText("{{top_text}}",center,50);
+				ctx.fillText("{{bottom_text}}",center,({{img_height}} - 20));
+				
+			  //canvas.toDataURL();
+			  //canvas.getContext('2d').getImageData(0, 0, 100, 100);
+			  // save canvas image as data url (png format by default)
+		      var dataURL = canvas.toDataURL();
+
+		      var filename = "{{name}}" + ".png";
+		      // set canvasImg image src to dataURL
+		      // so it can be saved as an image
+		      document.getElementById('myCanvas').src = dataURL;
+		      function downloadCanvas(link, canvasId, filename) {
+			    link.href = dataURL;
+			    link.download = filename;
+			  }
+
+			/** 
+			 * The event handler for the link's onclick event. We give THIS as a
+			 * parameter (=the link element), ID of the canvas and a filename.
+			*/
+			document.getElementById('download').addEventListener('click', function() {
+			    downloadCanvas(this, 'canvas', filename);
+			}, false);
+			};
+			img.src = "{{image_url}}";
+
+			
+			//var c = document.getElementById("myCanvas");
+			//var ctx = c.getContext("2d");
+			//ctx.font = "30px Arial";
+			//var img = document.getElementById("imageId");
+				//img.data.setAttribute('crossOrigin', 'anonymous');
+			//ctx.drawImage(img,0,0);
+			//ctx.fillText("{{top_text}}",150,50);
+			//ctx.fillText("{{bottom_text}}",150,({{img_height}} - 20));
+
+
+	</script>
+
+	<script type="text/javascript">
+		
+	</script>
+</template>
